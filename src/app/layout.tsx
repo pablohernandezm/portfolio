@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "./ui/globals.css";
+import Header from "./ui/header";
+import { DevContextProvider } from "./ui/components/devnamesprovider";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +19,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <DevContextProvider>
+        <body className={inter.className + " flex flex-col gap-4 antialiased"}>
+          <Header />
+          {children}
+        </body>
+      </DevContextProvider>
     </html>
   );
 }
